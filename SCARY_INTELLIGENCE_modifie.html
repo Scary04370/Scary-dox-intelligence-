@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080611">
+<title>SCARY INTELLIGENCE</title>
+<style>
+:root{--bg:#080611;--panel:#100c20;--panel2:#17102b;--line:#302052;--purple:#8b35ff;--purple2:#b16cff;--text:#f6f1ff;--muted:#aaa0c3;--green:#38df8b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer}
+.hidden{display:none!important}
+.landing{min-height:100vh;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 45%,#25104d 0,transparent 42%),radial-gradient(ellipse at 0% 70%,#32106b88 0,transparent 38%),radial-gradient(ellipse at 100% 70%,#32106b77 0,transparent 38%),#080611}
+.landing:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#a55bff0c 1px,transparent 1px),linear-gradient(90deg,#a55bff0c 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 90%);pointer-events:none}
+.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,5vw,70px);border-bottom:1px solid #ffffff12;position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:850;letter-spacing:.3px}.brandmark{color:var(--purple2);font-size:30px;text-shadow:0 0 20px var(--purple)}
+.brand em{font-style:normal;color:#b36aff}
+.top-actions{display:flex;gap:10px;align-items:center}
+.ghost,.primary,.secondary{border:1px solid #5e3295;border-radius:12px;padding:11px 17px;color:white;background:#170d2b}
+.primary{background:linear-gradient(100deg,#7b20f5,#9d3cff);border:1px solid #b36aff;box-shadow:0 8px 30px #8b35ff55;font-weight:750}
+.primary:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.hero{position:relative;z-index:1;max-width:880px;margin:0 auto;text-align:center;padding:clamp(75px,12vh,125px) 22px 70px}
+.kicker{display:inline-flex;gap:8px;align-items:center;border:1px solid #6637a0;background:#1b1030;color:#d3b6ff;border-radius:30px;padding:8px 14px;font-size:13px}
+h1{font-size:clamp(42px,8vw,78px);line-height:.98;letter-spacing:-2.5px;margin:28px 0 18px;font-weight:900}
+h1 span{display:block;color:#a75aff;text-shadow:0 0 32px #8b35ff55}
+.lead{font-size:clamp(16px,2vw,20px);color:#c0b6d4;line-height:1.65;max-width:650px;margin:0 auto 28px}
+.features{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:26px 0 34px}
+.feature{border:1px solid #38215a;background:#100a20c9;border-radius:30px;padding:9px 15px;color:#d7c9ed;font-size:14px}
+.hero-cta{min-width:min(100%,410px);padding:19px 24px;border-radius:16px;font-size:17px}
+.hero-note{color:#8f84a5;font-size:12px;margin-top:16px}
+.section{max-width:1000px;margin:0 auto;padding:20px 22px 75px;position:relative;z-index:1}
+.section h2{font-size:21px;margin:0 0 18px}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.benefit{background:#110b20d9;border:1px solid #2b1b43;border-radius:16px;padding:20px}
+.benefit .ico{font-size:24px;color:#b16cff}.benefit strong{display:block;margin:9px 0 5px}.benefit p{color:var(--muted);font-size:13px;margin:0;line-height:1.5}
+footer{text-align:center;border-top:1px solid #ffffff12;padding:20px;color:#796e8f;font-size:12px;position:relative;z-index:1}
+.app{min-height:100vh;background:radial-gradient(ellipse at 90% 0%,#26104455,transparent 38%),#080611}
+.appbar{height:72px;border-bottom:1px solid #2b1b43;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:#0c0815eF;position:sticky;top:0;z-index:5}
+.app-layout{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 72px)}
+.sidebar{padding:20px 14px;border-right:1px solid #2b1b43;background:#0b0814}
+.nav-label{font-size:10px;color:#75698d;letter-spacing:1.5px;padding:12px}
+.navbtn{width:100%;border:0;background:transparent;color:#bcb2ce;text-align:left;padding:12px 13px;border-radius:11px;margin:3px 0;display:flex;align-items:center;gap:12px}
+.navbtn:hover,.navbtn.active{background:linear-gradient(90deg,#4c168f66,#26133e);color:#fff}
+.navbtn.active{box-shadow:inset 3px 0 #a95cff}
+.content{padding:30px;max-width:1200px;width:100%;margin:0 auto}
+.page{display:none}.page.active{display:block}
+.page-title{font-size:27px;margin:0 0 6px}.page-sub{color:var(--muted);margin:0 0 24px;font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.card{background:linear-gradient(145deg,#151026,#0e0a18);border:1px solid #30204a;border-radius:16px;padding:19px}
+.stat{font-size:28px;font-weight:800;margin-top:8px}.muted{color:var(--muted);font-size:13px}
+.welcome{padding:28px;text-align:center;background:radial-gradient(ellipse at top,#51208a66,transparent 70%),#110b20}
+.welcome .crown{font-size:34px;color:#b16cff}.welcome h2{margin:8px 0}.status{color:var(--green);font-size:12px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:block;color:#bcb2ce;font-size:12px;margin-bottom:7px}
+input{width:100%;padding:12px 13px;border-radius:10px;border:1px solid #3b2a56;background:#090711;color:white;outline:none}
+input:focus{border-color:#a95cff;box-shadow:0 0 0 3px #8b35ff22}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.result .actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px}.result .actions a{text-align:center}
+.secondary{background:#171024;border-color:#3b2a56}
+.notice,.result{border:1px solid #3b2a56;border-radius:11px;padding:13px;margin-top:15px;color:#bdb1d0;font-size:13px;background:#0d0918}
+.result{white-space:pre-wrap}
+.tilegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tile{border:1px solid #30204a;border-radius:15px;padding:20px;background:#110b20;color:white;text-align:left}
+.tile:hover{border-color:#9a52ef;background:#1a1030}
+.tile b{display:block;margin:8px 0 4px}
+.menu-toggle{display:none}
+@media(max-width:760px){
+ .topbar{height:66px;padding:0 16px}.brand{font-size:17px}.top-actions .ghost{display:none}
+ .hero{padding:70px 20px 55px}h1{letter-spacing:-1.5px}.benefits{grid-template-columns:1fr}.section{padding-bottom:45px}
+ .appbar{height:64px;padding:0 15px}.app-layout{display:block}.sidebar{display:none;position:fixed;z-index:10;top:64px;bottom:0;left:0;width:260px;box-shadow:15px 0 40px #0009}
+ .sidebar.open{display:block}.menu-toggle{display:inline-block}.content{padding:22px 15px}.cards{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.tilegrid{grid-template-columns:1fr}
+}
+
+.auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 20%,#32145b 0,transparent 48%),#080611}
+.auth-card{width:min(100%,760px);border:1px solid #422866;background:linear-gradient(145deg,#171026,#0c0815);border-radius:22px;padding:clamp(22px,4vw,38px);box-shadow:0 24px 80px #0008}
+.auth-logo{text-align:center;margin-bottom:24px}.auth-logo .brand{justify-content:center;font-size:21px}
+.auth-title{text-align:center;font-size:27px;margin:0 0 8px}.auth-sub{text-align:center;color:#aaa0c3;font-size:14px;line-height:1.5;margin:0 0 24px}
+.auth-field{margin:14px 0}.auth-field input{margin-top:7px}
+.auth-submit{width:100%;padding:14px;margin-top:10px}
+.auth-switch{text-align:center;color:#aaa0c3;font-size:13px;margin-top:19px}
+.auth-switch button{border:0;background:none;color:#c18aff;font-weight:700;padding:4px}
+.auth-message{font-size:13px;color:#ffb6c1;min-height:20px;margin-top:12px;text-align:center}
+.auth-foot{text-align:center;color:#776b8d;font-size:11px;margin-top:18px;line-height:1.5}.auth-about{border-top:1px solid #352348;margin-top:30px;padding-top:22px;color:#aaa0c3;line-height:1.65;font-size:14px}.auth-about h2{color:#f4efff;font-size:18px;margin:0 0 8px}.auth-about p{margin:7px 0}.auth-about .creator{color:#c18aff;font-weight:700}.auth-title{margin-top:8px}
+
+</style>
+</head>
+<body>
+
+<div id="authScreen" class="auth-screen">
+ <div class="auth-card">
+  <div class="auth-logo"><div class="brand"><span class="brandmark">✦</span><span>SCARY <em>INTELLIGENCE</em></span></div></div>
+  <h1 class="auth-title" id="authTitle">Crée un compte pour commencer</h1>
+  <p class="auth-sub" id="authSubtitle">Inscris-toi avec un pseudo et un mot de passe pour accéder à ton espace.</p>
+  <form id="authForm">
+   <div class="auth-field"><label for="authUsername">Pseudo</label><input id="authUsername" autocomplete="username" minlength="3" maxlength="20" required placeholder="Ton pseudo"></div>
+   <div class="auth-field"><label for="authPassword">Mot de passe</label><input id="authPassword" type="password" autocomplete="new-password" minlength="4" maxlength="16" required placeholder="4 à 16 caractères"></div>
+   <button class="primary auth-submit" id="authSubmit" type="submit">Créer mon compte →</button>
+  </form>
+  <div class="auth-message" id="authMessage" aria-live="polite"></div>
+  <div class="auth-switch"><span id="authSwitchText">Tu as déjà un compte ?</span> <button id="authSwitch" type="button">Se connecter</button></div>
+  <div class="auth-foot">Aucun email demandé · Pseudo et mot de passe de 4 à 16 caractères.</div>
+  <section class="auth-about"><h2>À propos de SCARY INTELLIGENCE</h2><p>SCARY INTELLIGENCE rassemble dans un même espace des outils pour consulter des profils publics, vérifier le format d’un identifiant Discord et organiser ses propres informations et notes.</p><p>Le site ne permet pas d’accéder aux données privées des comptes ni de contourner leurs paramètres de confidentialité.</p><p class="creator">Un projet indépendant créé par SCARY.</p></section>
+ </div>
+</div>
+
+<div id="landing" class="landing hidden">
+ <header class="topbar">
+  <div class="brand"><span class="brandmark">✦</span><span>SCARY <em>INTELLIGENCE</em></span></div>
+  <div class="top-actions"><button class="ghost" id="discordInfo">◉ Discord</button><button class="primary" id="headerStart">Commencer</button></div>
+ </header>
+ <main>
+  <section class="hero">
+   <div class="kicker">✓ &nbsp; Espace de recherche publique</div>
+   <h1>SCARY <span>INTELLIGENCE</span></h1>
+   <p class="lead">Un espace simple pour organiser tes recherches sur les profils publics et gérer tes notes au même endroit.</p>
+   <div class="features"><span class="feature">✦ Interface rapide</span><span class="feature">⬡ Notes privées</span><span class="feature">◎ Profils publics</span></div>
+   <button class="primary hero-cta" id="start">➤ &nbsp; Commencer gratuitement &nbsp; →</button>
+   <div class="hero-note">Sans installation · Tableau de bord accessible en un clic</div>
+  </section>
+  <section class="section">
+   <h2>Un espace clair, tous tes outils au même endroit</h2>
+   <div class="benefits">
+    <div class="benefit"><div class="ico">⌕</div><strong>Recherche de profils publics</strong><p>Accès aux pages publiques des plateformes, sans contourner leurs réglages de confidentialité.</p></div>
+    <div class="benefit"><div class="ico">▣</div><strong>Notes personnelles</strong><p>Organise tes propres notes directement dans ton navigateur.</p></div>
+    <div class="benefit"><div class="ico">◇</div><strong>Interface simple</strong><p>Retrouve tes rubriques dans un tableau de bord unique.</p></div>
+   </div>
+  </section>
+ </main>
+ <footer>SCARY INTELLIGENCE · Espace personnel de démonstration</footer>
+</div>
+
+<div id="app" class="app hidden">
+ <header class="appbar">
+  <div style="display:flex;align-items:center;gap:12px"><button class="secondary menu-toggle" id="menuToggle">☰</button><div class="brand"><span class="brandmark">✦</span><span>SCARY <em>INTELLIGENCE</em></span></div></div>
+  <div style="display:flex;align-items:center;gap:14px"><span class="status">● En ligne</span><button class="secondary" id="backHome">Quitter</button></div>
+ </header>
+ <div class="app-layout">
+  <aside class="sidebar" id="sidebar">
+   <div class="nav-label">ESPACE DE TRAVAIL</div>
+   <button class="navbtn active" data-page="home">⌂ Accueil</button>
+   <button class="navbtn" data-page="personal">♙ Personal Info</button>
+   <button class="navbtn" data-page="social">◎ Réseaux sociaux</button>
+   <button class="navbtn" data-page="discord">◉ Discord ID</button>
+   <button class="navbtn" data-page="search">⌕ Recherche avancée</button>
+   <div class="nav-label">APPLICATION</div>
+   <button class="navbtn" data-page="settings">⚙ Paramètres</button>
+   <button class="navbtn" data-page="about">ⓘ À propos</button>
+  </aside>
+  <main class="content">
+   <section class="page active" id="page-home">
+    <h1 class="page-title">Tableau de bord</h1><p class="page-sub">Bienvenue dans ton espace SCARY INTELLIGENCE.</p>
+    <div class="card welcome"><div class="crown">♛</div><h2>Bienvenue sur SCARY !</h2><div class="muted">Choisis une rubrique dans le menu pour commencer.</div></div>
+    <div class="cards"><div class="card"><div class="muted">Outils disponibles</div><div class="stat">05</div></div><div class="card"><div class="muted">État du service</div><div class="stat status">En ligne</div></div><div class="card"><div class="muted">Recherches locales</div><div class="stat" id="count">00</div></div></div>
+    <div class="card"><h3>Accès rapide</h3><div class="tilegrid"><button class="tile" data-goto="personal">♙<b>Personal Info</b><span class="muted">Gérer tes notes locales</span></button><button class="tile" data-goto="social">◎<b>Réseaux sociaux</b><span class="muted">Ouvrir des profils publics</span></button><button class="tile" data-goto="discord">◉<b>Discord ID</b><span class="muted">Vérifier le format d'un ID</span></button><button class="tile" data-goto="search">⌕<b>Recherche avancée</b><span class="muted">Accéder aux outils publics</span></button></div></div>
+   </section>
+   <section class="page" id="page-personal">
+    <h1 class="page-title">Personal Info</h1>
+    <p class="page-sub">Renseigne les informations dans des champs simples. La recherche publique utilise uniquement le nom et le prénom.</p>
+    <div class="card">
+     <h3>Informations</h3>
+     <div class="formgrid">
+      <div><label for="pi-nom">Nom</label><input id="pi-nom" autocomplete="family-name" placeholder="Nom"></div>
+      <div><label for="pi-prenom">Prénom</label><input id="pi-prenom" autocomplete="given-name" placeholder="Prénom"></div>
+      <div><label for="pi-ville">Ville</label><input id="pi-ville" autocomplete="address-level2" placeholder="Ville"></div>
+      <div><label for="pi-postal">Code postal</label><input id="pi-postal" inputmode="numeric" autocomplete="postal-code" placeholder="Code postal"></div>
+      <div><label for="pi-tel">Numéro de téléphone</label><input id="pi-tel" type="tel" autocomplete="tel" placeholder="Numéro de téléphone"></div>
+      <div><label for="pi-age">Âge</label><input id="pi-age" type="number" min="1" max="120" placeholder="Âge"></div>
+      <div><label for="pi-date">Date de naissance</label><input id="pi-date" type="date"></div>
+      <div><label for="pi-email">Email</label><input id="pi-email" type="email" autocomplete="email" placeholder="Adresse email"></div>
+     </div>
+     <div style="margin-top:16px">
+      <label for="pi-handle">Ou pseudo public (ex. @pseudo)</label>
+      <input id="pi-handle" maxlength="40" placeholder="@pseudo public">
+     </div>
+     <div class="actions">
+      <button type="button" class="primary" id="searchPersonal">Rechercher le nom</button>
+      <button type="button" class="primary" id="searchHandle">Ouvrir les profils avec ce pseudo</button>
+      <button type="button" class="secondary" id="clearPersonal">Effacer</button>
+     </div>
+     <div class="result" id="personalResult">Entre un nom et un prénom, puis lance une recherche sur les sites publics.</div>
+    </div>
+    <div class="notice">Pour protéger la vie privée, les recherches externes utilisent uniquement le nom et le prénom. Le téléphone, l’email, la date de naissance, l’âge, la ville et le code postal ne sont jamais envoyés dans les liens de recherche. Utilise ces champs uniquement pour tes propres informations ou avec l’accord de la personne.</div>
+   </section>
+   <section class="page" id="page-social">
+    <h1 class="page-title">Réseaux sociaux</h1><p class="page-sub">Ouvre directement les pages publiques d'un compte.</p>
+    <div class="card"><div class="formgrid"><div><label for="platform">Plateforme</label><select id="platform" aria-label="Choisir une plateforme" style="width:100%;padding:12px 13px;border-radius:10px;border:1px solid #3b2a56;background:#090711;color:white"><option value="">Choisir une plateforme</option><option value="TikTok">TikTok</option><option value="Instagram">Instagram</option><option value="YouTube">YouTube</option></select></div><div><label for="handle">Nom d'utilisateur public</label><input id="handle" placeholder="@pseudo"></div></div><div class="actions"><button class="primary" id="openSocial">Ouvrir le profil public</button></div><div class="result" id="socialResult">Le site ouvrira le profil public sur la plateforme choisie.</div></div>
+   </section>
+   <section class="page" id="page-discord">
+    <h1 class="page-title">Discord ID</h1><p class="page-sub">Contrôle du format d'un identifiant numérique.</p>
+    <div class="card"><label for="discordId">Identifiant Discord</label><input id="discordId" inputmode="numeric" maxlength="24" placeholder="Identifiant numérique Discord"><div class="actions"><button class="primary" id="checkDiscord">Vérifier le format</button><button class="secondary" id="openDiscord">Ouvrir le profil</button></div><div class="result" id="discordResult">En attente d'un identifiant.</div><div class="notice">Cette vérification ne confirme pas l'existence du compte et ne donne pas accès à des informations privées, à une adresse IP ou à la localisation.</div></div>
+   </section>
+   <section class="page" id="page-search">
+    <h1 class="page-title">Recherche avancée</h1><p class="page-sub">Raccourcis vers des recherches ouvertes et non sensibles.</p>
+    <div class="tilegrid"><button class="tile" data-url="https://www.google.com/">⌕<b>Recherche web</b><span class="muted">Rechercher des informations générales publiques</span></button><button class="tile" data-url="https://www.tiktok.com/">♪<b>TikTok</b><span class="muted">Consulter les contenus publics</span></button><button class="tile" data-url="https://www.instagram.com/">◎<b>Instagram</b><span class="muted">Consulter les pages publiques</span></button><button class="tile" data-url="https://www.youtube.com/">▶<b>YouTube</b><span class="muted">Consulter les chaînes publiques</span></button></div>
+   </section>
+   <section class="page" id="page-settings">
+    <h1 class="page-title">Paramètres</h1><p class="page-sub">Préférences de l'interface.</p><div class="card"><h3>Session</h3><p class="muted">Version locale de démonstration. Aucun compte ni serveur n'est connecté.</p><button class="secondary" id="resetApp">Réinitialiser l'affichage</button></div>
+   </section>
+   <section class="page" id="page-about"><h1 class="page-title">À propos</h1><div class="card"><p>SCARY INTELLIGENCE est une interface de démonstration pour organiser des notes et accéder à des ressources publiques.</p><p class="muted">Les services externes s'ouvrent sur leurs sites officiels. Aucune recherche d'informations privées n'est effectuée.</p></div></section>
+  </main>
+ </div>
+</div>
+<script>
+
+const authScreen=document.getElementById('authScreen');
+let authMode='register';
+const ACCOUNT_KEY='scary_intelligence_local_account_v1';
+function setAuthMode(mode){
+ authMode=mode;
+ const registering=mode==='register';
+ document.getElementById('authTitle').textContent=registering?'Créer ton compte':'Connexion';
+ document.getElementById('authSubtitle').textContent=registering?'Choisis un pseudo et un mot de passe pour accéder à ton espace.':'Entre ton pseudo et ton mot de passe.';
+ document.getElementById('authSubmit').textContent=registering?'Créer mon compte →':'Se connecter →';
+ document.getElementById('authPassword').autocomplete=registering?'new-password':'current-password';
+ document.getElementById('authSwitchText').textContent=registering?'Tu as déjà un compte ?':'Pas encore de compte ?';
+ document.getElementById('authSwitch').textContent=registering?'Se connecter':'Créer un compte';
+ document.getElementById('authMessage').textContent='';
+}
+document.getElementById('authSwitch').addEventListener('click',()=>setAuthMode(authMode==='register'?'login':'register'));
+async function passwordDigest(password,salt){
+ const bytes=new TextEncoder().encode(salt+':'+password);
+ const hash=await crypto.subtle.digest('SHA-256',bytes);
+ return Array.from(new Uint8Array(hash)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+document.getElementById('authForm').addEventListener('submit',async event=>{
+ event.preventDefault();
+ const username=document.getElementById('authUsername').value.trim();
+ const password=document.getElementById('authPassword').value;
+ const message=document.getElementById('authMessage');
+ if(!/^[a-zA-Z0-9_-]{3,20}$/.test(username)){message.textContent='Le pseudo doit contenir 3 à 20 caractères : lettres, chiffres, _ ou -.';return}
+ if(!/^[a-zA-Z0-9]{4,16}$/.test(password)){message.textContent='Le mot de passe doit contenir uniquement des lettres ou chiffres, entre 4 et 16 caractères.';return}
+ if(!window.crypto?.subtle){message.textContent='Ce navigateur ne prend pas en charge cette démo de compte.';return}
+ let account=null;
+ try{account=JSON.parse(localStorage.getItem(ACCOUNT_KEY)||'null')}catch(e){}
+ if(authMode==='register'){
+  if(account){message.textContent='Un compte existe déjà dans ce navigateur. Connecte-toi.';return}
+  const salt=Array.from(crypto.getRandomValues(new Uint8Array(16))).map(x=>x.toString(16).padStart(2,'0')).join('');
+  const digest=await passwordDigest(password,salt);
+  localStorage.setItem(ACCOUNT_KEY,JSON.stringify({username,salt,digest}));
+  localStorage.setItem('scary_intelligence_session',username);
+  authScreen.classList.add('hidden');document.getElementById('landing').classList.remove('hidden');
+ }else{
+  if(!account||account.username.toLowerCase()!==username.toLowerCase()){message.textContent='Compte introuvable dans ce navigateur.';return}
+  const digest=await passwordDigest(password,account.salt);
+  if(digest!==account.digest){message.textContent='Mot de passe incorrect.';return}
+  localStorage.setItem('scary_intelligence_session',account.username);
+  authScreen.classList.add('hidden');document.getElementById('landing').classList.remove('hidden');
+ }
+});
+
+const landing=document.getElementById('landing'),app=document.getElementById('app');
+function enterApp(){landing.classList.add('hidden');app.classList.remove('hidden');window.scrollTo(0,0)}
+document.getElementById('start').addEventListener('click',enterApp);
+document.getElementById('headerStart').addEventListener('click',enterApp);
+document.getElementById('backHome').addEventListener('click',()=>{app.classList.add('hidden');landing.classList.remove('hidden');window.scrollTo(0,0)});
+document.getElementById('backHome').addEventListener('dblclick',()=>{localStorage.removeItem('scary_intelligence_session');landing.classList.add('hidden');authScreen.classList.remove('hidden');setAuthMode('login')});
+document.getElementById('discordInfo').addEventListener('click',()=>{enterApp();showPage('discord')});
+function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const page=document.getElementById('page-'+name);if(page)page.classList.add('active');document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===name));document.getElementById('sidebar').classList.remove('open');}
+document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.goto)));
+document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
+document.querySelectorAll('[data-url]').forEach(b=>b.addEventListener('click',()=>window.open(b.dataset.url,'_blank','noopener,noreferrer')));
+let notes=0;
+function getId(){return document.getElementById('discordId').value.replace(/[^0-9]/g,'')}
+function validDiscordId(id){return /^\d{17,20}$/.test(id)}
+document.getElementById('checkDiscord').addEventListener('click',()=>{const id=getId();document.getElementById('discordResult').textContent=validDiscordId(id)?'✓ Format numérique correct ('+id.length+' chiffres). Cela ne confirme pas que le compte existe.':'Format non reconnu : un identifiant Discord contient généralement 17 à 20 chiffres. Vérifie que tu as copié uniquement les chiffres.'});
+document.getElementById('openDiscord').addEventListener('click',()=>{const id=getId();const out=document.getElementById('discordResult');if(!validDiscordId(id)){out.textContent='Entre un identifiant Discord de 17 à 20 chiffres.';return}window.open('https://discord.com/users/'+encodeURIComponent(id),'_blank','noopener,noreferrer')});
+document.getElementById('openSocial').addEventListener('click',()=>{let p=document.getElementById('platform').value.trim().toLowerCase(),u=document.getElementById('handle').value.trim().replace(/^@/,'');const out=document.getElementById('socialResult');if(!p){out.textContent='Choisis TikTok, Instagram ou YouTube dans la liste.';return}if(!u){out.textContent='Entre un nom d’utilisateur public.';return}let url='';if(p==='tiktok')url='https://www.tiktok.com/@'+encodeURIComponent(u);else if(p==='instagram')url='https://www.instagram.com/'+encodeURIComponent(u)+'/';else if(p==='youtube')url='https://www.youtube.com/@'+encodeURIComponent(u);else{out.textContent='Plateforme non reconnue.';return}out.textContent='Ouverture du profil public : '+p+' / @'+u;window.open(url,'_blank','noopener,noreferrer')});
+function renderDirectCards(out, headingText, entries, noteText){
+ out.replaceChildren();
+ const heading=document.createElement('div');
+ heading.className='result-heading';
+ heading.textContent=headingText;
+ out.appendChild(heading);
+ const note=document.createElement('p');
+ note.className='muted';
+ note.textContent=noteText;
+ out.appendChild(note);
+ const list=document.createElement('div');
+ list.className='site-results';
+ list.style.display='grid';
+ list.style.gridTemplateColumns='repeat(auto-fit,minmax(230px,1fr))';
+ list.style.gap='10px';
+ entries.forEach(item=>{
+  const card=document.createElement('a');
+  card.className='site-result-card';
+  card.href=item.url;
+  card.target='_blank';
+  card.rel='noopener noreferrer';
+  card.style.cssText='display:flex;align-items:center;gap:12px;padding:12px;border:1px solid #3b2a56;border-radius:12px;background:rgba(255,255,255,.035);min-width:0;color:white;text-decoration:none';
+  card.title='Ouvrir directement '+item.name;
+  const logo=document.createElement('img');
+  logo.alt='';
+  logo.width=34;logo.height=34;
+  logo.loading='lazy';
+  logo.style.cssText='width:34px;height:34px;object-fit:contain;border-radius:8px;flex:0 0 34px;background:#fff;padding:3px';
+  logo.src='https://www.google.com/s2/favicons?domain='+encodeURIComponent(item.domain)+'&sz=64';
+  const info=document.createElement('div');
+  info.style.cssText='flex:1;min-width:0';
+  const title=document.createElement('strong');
+  title.textContent=item.name;
+  const desc=document.createElement('div');
+  desc.className='muted';
+  desc.style.fontSize='12px';
+  desc.textContent=item.desc;
+  info.append(title,desc);
+  const action=document.createElement('span');
+  action.className='secondary';
+  action.textContent='Ouvrir ↗';
+  action.style.cssText='white-space:nowrap;text-decoration:none;padding:9px 11px;border-radius:9px;color:white;display:inline-block';
+  card.append(logo,info,action);
+  list.appendChild(card);
+ });
+ out.appendChild(list);
+}
+
+document.getElementById('searchPersonal').addEventListener('click',(event)=>{
+ event.preventDefault();
+ const first=(document.getElementById('pi-prenom')?.value||'').trim();
+ const last=(document.getElementById('pi-nom')?.value||'').trim();
+ const out=document.getElementById('personalResult');
+ const fullName=[first,last].filter(Boolean).join(' ');
+ if(!fullName){out.textContent='Entre au moins un nom ou un prénom.';return}
+ const q=encodeURIComponent('"'+fullName+'"');
+ const entries=[
+  {name:'Google',domain:'google.com',url:'https://www.google.com/search?q='+q,desc:'Résultats web publics'},
+  {name:'Bing',domain:'bing.com',url:'https://www.bing.com/search?q='+q,desc:'Résultats web publics'},
+  {name:'DuckDuckGo',domain:'duckduckgo.com',url:'https://duckduckgo.com/?q='+q,desc:'Résultats web publics'},
+  {name:'Wikipedia',domain:'wikipedia.org',url:'https://fr.wikipedia.org/w/index.php?search='+encodeURIComponent(fullName),desc:'Articles publics'},
+  {name:'Instagram',domain:'instagram.com',url:'https://www.google.com/search?q='+encodeURIComponent('site:instagram.com "'+fullName+'"'),desc:'Résultats publics indexés sur Instagram'},
+  {name:'Facebook',domain:'facebook.com',url:'https://www.google.com/search?q='+encodeURIComponent('site:facebook.com "'+fullName+'"'),desc:'Résultats publics indexés sur Facebook'},
+  {name:'TikTok',domain:'tiktok.com',url:'https://www.google.com/search?q='+encodeURIComponent('site:tiktok.com "'+fullName+'"'),desc:'Résultats publics indexés sur TikTok'},
+  {name:'YouTube',domain:'youtube.com',url:'https://www.youtube.com/results?search_query='+encodeURIComponent(fullName),desc:'Résultats YouTube'},
+  {name:'X / Twitter',domain:'x.com',url:'https://www.google.com/search?q='+encodeURIComponent('site:x.com "'+fullName+'"'),desc:'Résultats publics indexés sur X'},
+  {name:'LinkedIn',domain:'linkedin.com',url:'https://www.google.com/search?q='+encodeURIComponent('site:linkedin.com/in "'+fullName+'"'),desc:'Pages professionnelles publiques'},
+  {name:'Reddit',domain:'reddit.com',url:'https://www.reddit.com/search/?q='+encodeURIComponent(fullName),desc:'Résultats Reddit publics'},
+  {name:'Twitch',domain:'twitch.tv',url:'https://www.google.com/search?q='+encodeURIComponent('site:twitch.tv "'+fullName+'"'),desc:'Chaînes publiques indexées'},
+  {name:'Pinterest',domain:'pinterest.com',url:'https://www.pinterest.com/search/users/?q='+encodeURIComponent(fullName),desc:'Recherche de profils publics'},
+  {name:'Snapchat',domain:'snapchat.com',url:'https://www.google.com/search?q='+encodeURIComponent('site:snapchat.com "'+fullName+'"'),desc:'Résultats publics indexés'}
+ ];
+ renderDirectCards(out,'Liens directs pour : '+fullName,entries,'Chaque carte ouvre directement le site ou ses résultats de recherche. Un résultat ne prouve pas que le profil appartient à la personne recherchée.');
+});
+
+document.getElementById('searchHandle').addEventListener('click',(event)=>{
+ event.preventDefault();
+ const handle=(document.getElementById('pi-handle')?.value||'').trim().replace(/^@/,'').replace(/\s+/g,'');
+ const out=document.getElementById('personalResult');
+ if(!handle){out.textContent='Entre un pseudo public, sans espace.';return}
+ if(!/^[a-zA-Z0-9._-]{2,40}$/.test(handle)){out.textContent='Format de pseudo non reconnu. Utilise seulement des lettres, chiffres, points, tirets ou tirets bas.';return}
+ const h=encodeURIComponent(handle);
+ const entries=[
+  {name:'Instagram',domain:'instagram.com',url:'https://www.instagram.com/'+h+'/',desc:'Lien direct vers le profil'},
+  {name:'TikTok',domain:'tiktok.com',url:'https://www.tiktok.com/@'+h,desc:'Lien direct vers le profil'},
+  {name:'YouTube',domain:'youtube.com',url:'https://www.youtube.com/@'+h,desc:'Lien direct vers la chaîne'},
+  {name:'X / Twitter',domain:'x.com',url:'https://x.com/'+h,desc:'Lien direct vers le profil'},
+  {name:'Twitch',domain:'twitch.tv',url:'https://www.twitch.tv/'+h,desc:'Lien direct vers la chaîne'},
+  {name:'Reddit',domain:'reddit.com',url:'https://www.reddit.com/user/'+h+'/',desc:'Lien direct vers le profil'},
+  {name:'Pinterest',domain:'pinterest.com',url:'https://www.pinterest.com/'+h+'/',desc:'Lien direct vers le profil'},
+  {name:'Snapchat',domain:'snapchat.com',url:'https://www.snapchat.com/add/'+h,desc:'Lien direct vers le profil public'},
+  {name:'Facebook',domain:'facebook.com',url:'https://www.facebook.com/'+h,desc:'Lien direct si le pseudo correspond à une adresse publique'},
+  {name:'GitHub',domain:'github.com',url:'https://github.com/'+h,desc:'Lien direct vers le compte'},
+  {name:'Telegram',domain:'t.me',url:'https://t.me/'+h,desc:'Lien direct vers le profil ou canal public'},
+  {name:'Google',domain:'google.com',url:'https://www.google.com/search?q='+encodeURIComponent('"'+handle+'"'),desc:'Chercher ce pseudo sur le web'}
+ ];
+ renderDirectCards(out,'Liens directs pour le pseudo : @'+handle,entries,'Les cartes ouvrent directement les adresses publiques construites avec ce pseudo. Le site peut afficher un profil introuvable si ce pseudo n’existe pas sur cette plateforme. Un même pseudo peut appartenir à des personnes différentes.');
+});
+document.getElementById('clearPersonal').addEventListener('click',()=>{
+ ['pi-nom','pi-prenom','pi-ville','pi-postal','pi-tel','pi-age','pi-date','pi-email','pi-handle'].forEach(id=>document.getElementById(id).value='');
+ document.getElementById('personalResult').textContent='Champs effacés.';
+});
+document.getElementById('resetApp').addEventListener('click',()=>showPage('home'));
+</script>
+</body>
+</html>
